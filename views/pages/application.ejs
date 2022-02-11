@@ -1,0 +1,155 @@
+<body>
+  <!-- Sidenav -->
+  <% include ../partials/sidebar %>
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Top navbar -->
+    <% include ../partials/navbar %>
+    <!-- Header -->
+    <% include ../partials/application/header %>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="<%- locals.userInfo && locals.userInfo.picture || 'img/theme/team-4-800x800.jpg' %>" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+            </div>
+            <div class="card-body mt-8 pt-0 pt-md-4">
+              <div class="text-center">
+                <h3>
+                    <%= locals.userInfo && locals.userInfo.name || 'Jessica Jones' %>
+                </h3>
+                <div class="h5 font-weight-300">
+                  <%= locals.userInfo && locals.userInfo.profile && locals.userInfo.profile.role || '' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Application Details</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form action="<%- __siteurl %>/application/saveApp" method="POST">
+                <h6 class="heading-small text-muted mb-4">Required Fields</h6>
+                <div class="pl-lg-4">
+                  <% if (locals.messages && messages.success) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <%= messages.success %>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                  <% } %>
+                  <% if (locals.messages && messages.errors && messages.errors.databaseError) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <%= messages.errors %>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                  <% } %>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">App Name</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="Name" placeholder="Application Name" value="<%= locals.appInfo && locals.appInfo.appName || '' %>" <%= (locals.appInfo && locals.appInfo.appName)?'readonly':'' %> required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">Directory</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="Directory" placeholder="master" value="<%= locals.appInfo && locals.appInfo.appDirectory || '' %>" <%= (locals.appInfo && locals.appInfo.appName)?'readonly':'' %> required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">git Path</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="GitPath" placeholder="Origin" value="<%= locals.appInfo && locals.appInfo.appGitPath || '' %>" required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">git Branch</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="GitBranch" placeholder="master" value="<%= locals.appInfo && locals.appInfo.appGitBranch || '' %>" required>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <hr class="my-4">
+
+                <h6 class="heading-small text-muted mb-4">Optional</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">git URL (SSH/HTTPS)</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="RepoSource" placeholder="git@gitlab.com:yyyy/xxx.git" value="<%= locals.appInfo && locals.appInfo.appRepoSource || '' %>" >
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">NodeJS Port</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="Port" placeholder="3000" value="<%= locals.appInfo && locals.appInfo.appPort || '' %>" >
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">nginx Domain</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="Domain" placeholder="aaa.xxx.com" value="<%= locals.appInfo && locals.appInfo.appDomain || '' %>" >
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-name">user</label>
+                        <input type="text" id="input-name" class="form-control form-control-alternative" name="User" placeholder="hoax" value="<%= locals.appInfo && locals.appInfo.appUser || '' %>" >
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+								<div class="row">
+									<div class="col-lg-4"></div>
+									<div class="col-lg-4">
+										<input type='submit' value='Save' class='btn btn-block btn-primary'>
+									</div>
+									<div class="col-lg-4"></div>
+								</div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <% include ../partials/footer %>
+    </div>
+  </div>
+
+  <!-- Include scripts -->
+  <% include ../partials/scripts %>
+</body>

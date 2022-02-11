@@ -1,0 +1,85 @@
+<body>
+	<!-- Sidenav -->
+	<% include ../../partials/sidebar %>
+	<!-- Main content -->
+	<div class="main-content">
+		<!-- Top navbar -->
+		<% include ../../partials/navbar %>
+		<!-- Header -->
+		<% include header %>
+
+		<!-- Page content -->
+		<div class="container-fluid mt--7">
+			<div class="row mt-3">
+
+				<div class="masonry-item col-12">
+					<div class="card shadow">
+						<div class="card-header border-0">
+							<div class="row align-items-center">
+								<div class="col">
+									<h3 class="mb-0">List Ticket for [<%= customer.id %>] <%= customer.name %></h3>
+								</div>
+								<div class="col">
+								</div>
+							</div>
+						</div>
+
+						<div class="card-body table-responsive">
+
+							<table class="table table-hover datatables">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Ticket</th>
+										<th>Customer</th>
+										<th>Driver</th>
+										<th>Truck Number</th>
+										<th>Type</th>
+										<th>Qty</th>
+										<th>Unit</th>
+										<th>Assignment Date</th>
+										<th>Status</th>
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% let index = 1;
+									for(const item of _tickets){ %>
+									<tr>
+										<td><%= index++ %></td>
+										<td><%= item.ticket.name %></td>
+										<td><%= item.customer.name %></td>
+										<td><%= item.driver.name %></td>
+										<td><%= item.truck.number %></td>
+										<td><%= item.commodity.name %></td>
+										<td><%= item.plan.quantity %></td>
+										<td><%= item.commodity.symbol %></td>
+										<td><%= item.plan.timestamp %></td>
+										<td><%-
+											item.status
+											? '<i class="fas fa-check-circle text-success fa-lg"></i>'
+											: '<i class="fas fa-times-circle text-danger fa-lg"></i>'
+										%></td>
+										<td><a href="<%- current.url + '/tickets/' + hashids.encode(item.ticket.id) + '/view' %>" class="btn btn-sm btn-info">VIEW</a></td>
+									</tr>
+									<% } %>
+								</tbody>
+
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Footer -->
+			<% include ../../partials/footer %>
+		</div>
+	</div>
+
+	<!-- Include scripts -->
+	<% include ../../partials/scripts %>
+
+</body>

@@ -1,0 +1,164 @@
+<body>
+	<!-- Sidenav -->
+	<% include ../../partials/sidebar %>
+	<!-- Main content -->
+	<div class="main-content">
+		<!-- Top navbar -->
+		<% include ../../partials/navbar %>
+		<!-- Header -->
+		<% include header %>
+
+		<!-- Page content -->
+		<div class="container-fluid mt--7">
+			<div class="row mt-3">
+
+				<div class="masonry-item col-12">
+					<div class="card shadow">
+						<div class="card-header border-0">
+							<div class="row align-items-center">
+								<div class="col">
+									<h3 class="mb-0"><%= (page && page.subtitle) || 'Create or Update' %></h3>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-body">
+
+							<form method="POST" action="<%- current.url + '/add-edit' %>" id="ticket-form">
+								<input type="hidden" class="form-control form-control-alternative" name="id" placeholder="Text" value="<%= edit && edit.ticket && edit.ticket.id %>">
+
+								<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Ticket Name</label>
+												<input type="text" class="form-control form-control-alternative" name="name" placeholder="Number" value="<%= edit && edit.ticket && edit.ticket.name %>" autocomplete="off" required>
+											</div>
+										</div>
+
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Assignment Date</label>
+												<input type="text" class="form-control form-control-alternative datetimepicker" name="date" placeholder="Text" value="<%= edit && edit.plan && edit.plan.timestamp %>" autocomplete="off" required>
+											</div>
+										</div>
+								</div>
+
+								<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Customer</label>
+												<select class="form-control form-control-alternative select2" name="customer" autocomplete="off" required>
+													<option value="" <%= edit ? '' : 'selected' %> disabled>---</option>
+												<% for(const item of _customers){ %>
+													<option value="<%= item.id %>" <%= edit && edit.customer && edit.customer.id === item.id ? 'selected' : '' %>><%= item.name %></option>
+												<% } %>
+												</select>
+											</div>
+										</div>
+
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Type</label>
+												<select class="form-control form-control-alternative select2" name="commodity" autocomplete="off" required>
+													<option value="" <%= edit ? '' : 'selected' %> disabled>---</option>
+												<% for(const item of _commodities){ %>
+													<option value="<%= item.id %>" <%= edit && edit.commodity && edit.commodity.id === item.id ? 'selected' : '' %>><%= item.name %> [<%= item.unit.name %>]</option>
+												<% } %>
+												</select>
+											</div>
+										</div>
+
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Quantity</label>
+												<input type="number" min="0" step="0.01" class="form-control form-control-alternative" name="quantity" placeholder="number" value="<%= edit && edit.plan && edit.plan.quantity %>" autocomplete="off" required>
+											</div>
+										</div>
+								</div>
+
+								<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Driver</label>
+												<select class="form-control form-control-alternative select2" name="driver" autocomplete="off" required>
+													<option value="" <%= edit ? '' : 'selected' %> disabled>---</option>
+												<% for(const item of _drivers){ %>
+													<option value="<%= item.id %>" <%= edit && edit.driver && edit.driver.id === item.id ? 'selected' : '' %>><%= item.name %></option>
+												<% } %>
+												</select>
+											</div>
+										</div>
+
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Truck</label>
+												<select class="form-control form-control-alternative select2" name="truck" autocomplete="off" required>
+													<option value="" <%= edit ? '' : 'selected' %> disabled>---</option>
+												<% for(const item of _trucks){ %>
+													<option value="<%= item.id %>" <%= edit && edit.truck.id === item.id ? 'selected' : '' %>><%= item.number %></option>
+												<% } %>
+												</select>
+											</div>
+										</div>
+
+										<div class="col">
+											<div class="form-group">
+												<label class="form-control-label" for="input-name">Device</label>
+												<select class="form-control form-control-alternative select2" name="device" autocomplete="off" required>
+													<option value="" <%= edit ? '' : 'selected' %> disabled>---</option>
+												<% for(const item of _devices){ %>
+													<option value="<%= item.id %>" <%= edit && edit.device && edit.device.id === item.id ? 'selected' : '' %>><%= item.name %></option>
+												<% } %>
+												</select>
+											</div>
+										</div>
+
+								</div>
+
+								<div class="row mt-2">
+									<div class="col">
+										<a href="<%- current.url %>" class="btn btnl-lg btn-block btn-danger">Back</a>
+									</div>
+
+									<div class="col">
+										<button class="btn btnl-lg btn-block btn-primary">Save</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="package-contents" tabindex="-1" role="dialog" aria-labelledby="Package Contents" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title">Package Contents</h2>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								...
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" id="save-package-contents">Save changes</button>
+						</div>
+						</div>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<% include ../../partials/footer %>
+		</div>
+	</div>
+
+	<!-- Include scripts -->
+	<% include ../../partials/scripts %>
+	<script>
+		console.log(<%- JSON.stringify(edit) %>);
+	</script>
+</body>

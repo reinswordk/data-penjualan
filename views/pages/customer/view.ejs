@@ -1,0 +1,210 @@
+<body>
+	<!-- Sidenav -->
+	<% include ../../partials/sidebar %>
+	<!-- Main content -->
+	<div class="main-content">
+		<!-- Top navbar -->
+		<% include ../../partials/navbar %>
+		<!-- Header -->
+		<% include header %>
+
+		<!-- Page content -->
+		<div class="container-fluid mt--7">
+			<div class="row mt-3">
+
+				<div class="masonry-item col-12">
+					<div class="card shadow">
+						<div class="card-header border-0">
+							<div class="row align-items-center">
+								<div class="col">
+									<h3 class="mb-0"><%= (page && page.subtitle) || 'View Report' %></h3>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-body">
+							<form class="row">
+								<div class="col container-fluid">
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Ticket Name</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext text-success font-weight-bold" readonly value="<%= edit && edit.ticket && edit.ticket.name %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Assignment Date</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.plan && edit.plan.timestamp %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Customer</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.customer && edit.customer.name %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Type</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.commodity && edit.commodity.name %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Quantity</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.plan && edit.plan.quantity %> <%= edit && edit.commodity && edit.commodity.unit %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Driver</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.driver && edit.driver.name %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Truck Number</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.truck && edit.truck.number %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="col container-fluid">
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Meter Start</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.result && edit.result.meter && edit.result.meter.start %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Meter Finish</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.result && edit.result.meter && edit.result.meter.finish %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Meter Total</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext text-primary font-weight-bold" readonly value="<%= edit && edit.result && edit.result.quantity %> <%= edit && edit.commodity && edit.commodity.unit %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">&nbsp;</label>
+												<div class="col-sm-8">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Time Start</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.result && edit.result.time && edit.result.time.start %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Time Finish</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext" readonly value="<%= edit && edit.result && edit.result.time && edit.result.time.finish %>">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col">
+											<div class="row border-bottom">
+												<label class="col-sm-4 col-form-label font-weight-bold">Duration</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control-plaintext text-primary font-weight-bold" readonly value="<%= edit && edit.result && edit.result.hms %>">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</form>
+
+							<div class="row mt-5">
+								<div class="col">
+									<a href="<%- current.url %>" class="btn btnl-lg btn-block btn-danger">Back</a>
+								</div>
+								<div class="col"></div>
+								<div class="col"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Footer -->
+			<% include ../../partials/footer %>
+		</div>
+	</div>
+
+	<!-- Include scripts -->
+	<% include ../../partials/scripts %>
+	<script>
+		console.log(<%- JSON.stringify(edit) %>);
+	</script>
+</body>

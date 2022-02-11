@@ -1,0 +1,55 @@
+
+/*=============================================
+=            COLORS            =
+=============================================*/
+
+.bg-blue {
+    background-color: #0070C0;
+}
+
+.bg-red {
+    background-color: #C00000;
+}
+
+.bg-orange {
+    background-color: #FFC000;
+}
+
+.bg-limegreen {
+    background-color: #92D050;
+}
+
+.bg-lightblue {
+    background-color: #00B0F0;
+}
+
+.bg-slightblue {
+    background-color: #E800E8;
+}
+
+.bg-darkblue {
+    background-color: #002060;
+}
+
+.bg-limegreen {
+    background-color: #92D050;
+}
+
+.bg-purple {
+    background-color: #7030A0;
+}
+
+.bg-magenta {
+    background-color: magenta;
+}
+
+.bg-mediumspringgreen {
+    background-color: mediumspringgreen;
+}
+
+.bg-lightcoral {
+    background-color: lightcoral;
+}
+
+
+/*=====  End of COLORS  ======*/
