@@ -5,10 +5,10 @@ const mysql = new(require(`${__class_dir}/mariadb.class.js`))(config.db);
 const __handler = require(__basedir + '/class/fileHandling.class.js');
 const handler = new __handler(__basedir + '/public/image/parts/');
 
-class _karyawan{
-	deleteKaryawan(id){
+class _product{
+	deleteProduct(id){
 		const sql = {
-			query: `DELETE FROM tb_employee WHERE id = ?`,
+			query: `DELETE FROM s_produk WHERE id = ?`,
 			params: [id]
 		}
 
@@ -20,7 +20,7 @@ class _karyawan{
 				}
 			}).catch(error => {
 				if (debug) {
-					console.error('deleteKaryawan Error:', error);
+					console.error('deleteProduct Error:', error);
 				}
 
 				return {
@@ -30,10 +30,10 @@ class _karyawan{
 			})
 	}
 
-	updateKaryawan(data){
+	updateProduct(data){
 		const sql = {
-			query: `UPDATE tb_employee SET name = ?, date_birth = ?, position = ? WHERE id = ?`,
-			params: [data.name, data.date_birth, data.position, data.id]
+			query: `UPDATE s_produk SET name = ?, price = ? WHERE id = ?`,
+			params: [data.name, data.price, data.id]
 		}
 
 		return mysql.query(sql.query, sql.params)
@@ -44,7 +44,7 @@ class _karyawan{
 				}
 			}).catch(error => {
 				if(debug){
-					console.error('updateKaryawan Error:', error);
+					console.error('updateProduct Error:', error);
 				}
 
 				return {
@@ -54,10 +54,10 @@ class _karyawan{
 			})
 	}
 
-	addKaryawan(data){
+	addProduct(data){
 		const sql = {
-			query: `INSERT INTO tb_employee(id, name, date_birth, position) VALUES (?, ?, ?, ?)`,
-			params: [data.employee_id, data.name, data.date_birth, data.position]
+			query: `INSERT INTO s_produk(id, name, price) VALUES (?, ?, ?)`,
+			params: [data.id, data.name, data.price]
 		}
 
 		return mysql.query(sql.query, sql.params)
@@ -68,7 +68,7 @@ class _karyawan{
 				}
 			}).catch(error => {
 				if(debug){
-					console.error('addKaryawan Error:', error);
+					console.error('addProduct Error:', error);
 				}
 
 				return {
@@ -78,16 +78,15 @@ class _karyawan{
 			})
 	}
 
-	getDetailKaryawan(id){
+	getDetailProduct(id){
 		const sql = {
 			query: `
 				SELECT
-					emp.id,
-					emp.name,
-					emp.date_birth,
-					emp.position
-				FROM tb_employee emp
-				WHERE emp.id = ?`,
+					pro.id,
+					pro.name,
+					pro.price
+				FROM s_produk pro
+				WHERE pro.id = ?`,
 			params: [id]
 		}
 
@@ -99,7 +98,7 @@ class _karyawan{
 				}
 			}).catch(error => {
 				if (debug) {
-					console.error("getDetailKaryawan Error:", error);
+					console.error("getDetailProduct Error:", error);
 				}
 
 				return {
@@ -109,15 +108,14 @@ class _karyawan{
 			})
 	}
 
-	listKaryawan(){
+	listProduct(){
 		const sql = {
 			query: `
 				SELECT
-					emp.id,
-					emp.name,
-					emp.date_birth,
-					emp.position
-				FROM tb_employee emp
+					pro.id,
+					pro.name,
+					pro.price
+				FROM s_produk pro
 				WHERE 1`,
 			params: [],
 		};
@@ -138,7 +136,7 @@ class _karyawan{
 				}
 
 				if(debug){
-					console.error('karyawan list Error:', error);
+					console.error('Product list Error:', error);
 				}
 
 				return {
@@ -149,4 +147,4 @@ class _karyawan{
 	};
 }
 
-module.exports = new _karyawan();
+module.exports = new _product();
