@@ -6,7 +6,7 @@ const __handler = require(__basedir + '/class/fileHandling.class.js');
 const handler = new __handler(__basedir + '/public/image/parts/');
 
 class _customer{
-	deleteProduct(id){
+	deleteCustomer(id){
 		const sql = {
 			query: `DELETE FROM s_customer WHERE id = ?`,
 			params: [id]
@@ -33,7 +33,7 @@ class _customer{
 	updateCustomer(data){
 		const sql = {
 			query: `UPDATE s_customer SET first_name = ?, last_name = ? WHERE id = ?`,
-			params: [data.name, data.price, data.id]
+			params: [data.first_name, data.last_name, data.id]
 		}
 
 		return mysql.query(sql.query, sql.params)
@@ -86,7 +86,7 @@ class _customer{
 					cus.first_name,
 					cus.last_name
 				FROM s_customer cus
-				WHERE pro.id = ?`,
+				WHERE cus.id = ?`,
 			params: [id]
 		}
 
