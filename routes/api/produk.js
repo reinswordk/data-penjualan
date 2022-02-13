@@ -1,5 +1,4 @@
 const express = require('express');
-const { deleteProduct } = require('../../module/produk.module');
 const router = express.Router();
 
 const session = require(__module_dir + '/session.module.js');
