@@ -1,11 +1,10 @@
 const express = require('express');
-const { deleteProduct } = require('../../module/produk.module');
 const router = express.Router();
 
 const session = require(__module_dir + '/session.module.js');
 const helper = require(__class_dir + '/helper.class.js');
 
-const m$stockOut = require(`${__module_dir}/stock_out.module.js`);
+const m$stockOut = require(`${__module_dir}/stock-out.module.js`);
 
 router.get('/', async function (req, res, next) {
 	const list = await m$stockOut.listStockOut();
